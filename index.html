@@ -133,6 +133,12 @@
                 border-radius: 5px;
 
             }
+
+            .video-background {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
             
             .Title2{
                 margin:8px 8px;
@@ -158,6 +164,9 @@
         console.log('User',UserID(), 'entered into the website')
     </script>
     <body>
+        <video autoplay loop muted playsinline class="video-background">
+            <source src="https://pixabay.com/videos/download/video-67358_tiny.mp4" tyoe="video/mp4">
+        </video>
         <nav class="navbar">
             <a href="/"><img id="Image1" src="https://i.ibb.co/KjZ0wgkV/Ashley-dark.png" width="50" height="50"></a>
             <div class='hamburger-items'>
