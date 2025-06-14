@@ -151,32 +151,6 @@
 
         </style>
     </head>
-    <script>
-        function UserID() {
-            let user = localStorage.getItem('userID')
-        if (!user) {
-            user = Math.floor(Math.random() * 1000)
-            localStorage.setItem('userID', user)
-            console.log('Created a new ID for this new user',user)
-            window.onload = function(){
-                alert('Welcome! Your UserID is "' + UserID() + '", Click each section for more information')
-            }
-        }
-        return user
-        }
-        console.log('User',UserID(), 'entered into the website')
-
-        function UserName() {
-            let input = document.getElementById ('nameinput')
-            let button = document.getElementById ('hibtn')
-            let output = document.getElementById ('outputname')
-            button.addEventListener("click", function(){
-                let name = input.value;
-                output.textContent = ('Hello, ' + name)
-            })
-        }
-        UserName()
-    </script>
     <body>
         <video autoplay loop muted playsinline class="video-background">
             <source src="67358-521707474_tiny.mp4" type="video/mp4">
@@ -213,5 +187,31 @@
         <p>Ashley 2025 Zhanyi Zhou</p>
     <!--https://i.ibb.co/KjZ0wgkV/Ashley-light.png-->
     </nav>
+    <script>
+        function UserID() {
+            let user = localStorage.getItem('userID')
+        if (!user) {
+            user = Math.floor(Math.random() * 1000)
+            localStorage.setItem('userID', user)
+            console.log('Created a new ID for this new user',user)
+            window.onload = function(){
+                alert('Welcome! Your UserID is "' + UserID() + '", Click each section for more information')
+            }
+        }
+        return user
+        }
+        console.log('User',UserID(), 'entered into the website')
+
+        function UserName() {
+            let input = document.getElementById ('nameinput')
+            let button = document.getElementById ('hibtn')
+            let output = document.getElementById ('outputname')
+            button.addEventListener("click", function(){
+                let name = input.value;
+                output.textContent = ('Hello, ' + name)
+            })
+        }
+        UserName()
+    </script>
     </body>
 </html>
