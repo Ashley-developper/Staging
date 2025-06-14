@@ -167,7 +167,14 @@
         console.log('User',UserID(), 'entered into the website')
 
         function UserName() {
-            let 
+            let input = document.getElementById ('nameinput')
+            let button = document.getElementById ('hibtn')
+            let output = document.getElementById ('outputname')
+            buttom.addEventListener("click", function(){
+                let name = input.value;
+                output.textContent = ('Hello, ' + name)
+            })
+        UserName()
     </script>
     <body>
         <video autoplay loop muted playsinline class="video-background">
