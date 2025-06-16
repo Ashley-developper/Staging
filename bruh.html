@@ -62,11 +62,13 @@
         Island.classList.remove ('grow')
         text.style.opacity=('0')
         Island.addEventListener('mouseenter',function() {
+            text.style.transition=('1s')
             Island.classList.add ('grow')
             text.style.opacity=('1')
             text.innerText='Developper BETA'
         })
         Island.addEventListener('mouseleave',function() {
+            text.style.transition=('0.3s')
             Island.classList.remove ('grow')
             text.style.opacity=('0')
         })
