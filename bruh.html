@@ -29,7 +29,7 @@
             }
 
             .Island.grow {
-                Opacity: 0.2;
+                Opacity: 1;
                 width: 160px;
                 height: 40px;
         </style>
@@ -42,7 +42,12 @@
     
     <script>
         //Started June 16 17:48:07
-        
+        const Island = document.querySelector('Island')
+        const Islandgrow = document.querySelector('.Island.grow')
+        Island.classlist.remove ('grow')
+        Island.addEventListener('mouseenter',function() {
+            Island.classlist.add ('grow')
+        }
     </script>
     </body>
 </html>
