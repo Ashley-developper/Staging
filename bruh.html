@@ -44,12 +44,6 @@
                 transition: 1s;
             }
 
-            .text2 {
-                opacity: 1;
-                color: white;
-                opacity: 0;
-                transition: 1s;
-            }
         </style>
         
     </head>
@@ -57,7 +51,6 @@
     <body>
         <div class="Island grow">
             <p class="text"></p>
-            <p class="text2"></p>
         </div>
         <p></p>
     </body>
@@ -70,10 +63,7 @@
         const text2 = document.querySelector('.text2')
         Island.classList.remove ('grow')
         text.style.opacity=('0')
-        text2.style.opacity=('1')
-        text2.innerText='Ashley'
         Island.addEventListener('mouseenter',function() {
-            text2.style.opacity=('0')
             text.style.transition=('1s')
             Island.classList.add ('grow')
             text.style.opacity=('1')
@@ -83,7 +73,6 @@
             text.style.transition=('0.3s')
             Island.classList.remove ('grow')
             text.style.opacity=('0')
-            text2.style.opacity=('1')
         })
     </script>
     </body>
