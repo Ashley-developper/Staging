@@ -26,6 +26,8 @@
                 border-radius: 999px;
                 cursor: pointer;
                 transition: 0.3s;
+                justify-content: center;
+                align-items: center;
             }
 
             .Island.grow {
@@ -34,14 +36,18 @@
             }
 
             .text {
-                
+                color: white;
+                opacity: 0;
+                transition: 0.3s;
             }
         </style>
         
     </head>
     
     <body>
-        <div class="Island grow"></div>
+        <div class="Island grow">
+            <p class="text">AOS 4.0</p>
+        </div>
         <p></p>
     </body>
     
@@ -49,14 +55,15 @@
         //Started June 16 17:48:07
         const Island = document.querySelector('.Island')
         const Islandgrow = document.querySelector('.Island.grow')
+        const text = document.querySelector('.text')
         Island.classList.remove ('grow')
         Island.addEventListener('mouseenter',function() {
             Island.classList.add ('grow')
-            Island.innerText ('AOS 4.0')
+            text.style.opacity('1')
         })
         Island.addEventListener('mouseleave',function() {
             Island.classList.remove ('grow')
-            Island.innerText ('')
+            text.style.opacity('0')
         })
     </script>
     </body>
