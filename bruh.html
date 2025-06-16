@@ -47,7 +47,7 @@
     
     <body>
         <div class="Island grow">
-            <p class="text">Ashley Studio</p>
+            <p class="text">AOS 4.0</p>
         </div>
         <p></p>
     </body>
@@ -58,14 +58,14 @@
         const Islandgrow = document.querySelector('.Island.grow')
         const text = document.querySelector('.text')
         Island.classList.remove ('grow')
-        text.innerText='AOS 4.0'
+        text.style.opacity=('1')
         Island.addEventListener('mouseenter',function() {
             Island.classList.add ('grow')
-            text.style.opacity=('1')
+            text.innerText='Ashley Studio'
         })
         Island.addEventListener('mouseleave',function() {
             Island.classList.remove ('grow')
-            text.style.opacity=('0')
+            text.innerText='AOS 4.0'
         })
     </script>
     </body>
