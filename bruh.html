@@ -26,7 +26,7 @@
                 transform: translateX(-50%);
                 border-radius: 999px;
                 cursor: pointer;
-                transition: 0.3s;
+                transition: all 0.3s ease;
                 justify-content: center;
                 align-items: center;
             }
@@ -95,9 +95,10 @@
         Island.addEventListener('click',function() {
             Island.classList.toggle ('plus')
             text.style.opacity=('0')
-            text.style.transition=('0.3s')
+            text.style.transition=('all 0.3s ease')
             text.style.opacity=('1')
             text.innerText='AOS 4.0'
+            
         })
     </script>
     </body>
