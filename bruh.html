@@ -74,9 +74,11 @@
         //Started June 16 17:48:07
         const Island = document.querySelector('.Island')
         const Islandgrow = document.querySelector('.Island.grow')
+        const Islandplus = document.querySelector('.Island.plus')
         const text = document.querySelector('.text')
         const text2 = document.querySelector('.text2')
         Island.classList.remove ('grow')
+        Island.classList.remove ('plus')
         text.style.opacity=('0')
         Island.addEventListener('mouseenter',function() {
             text.style.transition=('1s')
@@ -88,6 +90,13 @@
             text.style.transition=('0.3s')
             Island.classList.remove ('grow')
             text.style.opacity=('0')
+        })
+        Island.addEventListener('click',function() {
+            text.style.opacity=('0')
+            text.style.transition=('1s')
+            Island.classList.toggle ('plus')
+            text.style.opacity=('1')
+            text.innerText='AOS 4.0'
         })
     </script>
     </body>
