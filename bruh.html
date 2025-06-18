@@ -39,31 +39,6 @@
                 height: 40px;
             }
 
-            .Island.plus {
-                padding: 0px 10px;
-                min-width: 120px;
-                width: 270px;
-                height: 120px;
-            }
-
-            .text2 {
-                color: white;
-                display: flex;
-                color: white;
-                top: 16px;
-                opacity: 0;
-                transition: 1s;
-            }
-
-            .text2.vis{
-                color: white;
-                display: flex;
-                color: white;
-                top: 16px;
-                opacity: 1;
-                transition: 1s;
-            }
-
             .text {
                 position: absolute;
                 left: 50%;
@@ -89,7 +64,6 @@
         <nav class="navbar">
             <div class="Island grow plus">
                 <p class="text"></p>
-                <p class="text2 vis"></p>
             </div>
             <a class="logo" href="/"><img src="https://i.ibb.co/DPCmRdtg/Ashley-light.png" width="70" height=auto></a>
         </nav>
@@ -99,29 +73,17 @@
         //Started June 16 17:48:07
         const Island = document.querySelector('.Island')
         const Islandgrow = document.querySelector('.Island.grow')
-        const Islandplus = document.querySelector('.Island.plus')
         const text = document.querySelector('.text')
-        const text2 = document.querySelector('.text2')
-        const text2vis = document.querySelector('.text2.vis')
         Island.classList.remove ('grow')
         Island.classList.remove ('plus')
         text.style.opacity=('0')
-        Island.addEventListener('mouseenter',function() {
+        Island.addEventListener('click',function() {
             text.style.transition=('1s')
-            Island.classList.add ('grow')
+            Island.classList.toggle ('grow')
             text.style.opacity=('1')
             text.innerText='Main Page'
         })
-        Island.addEventListener('mouseleave',function() {
-            text.style.transition=('0.1s')
-            Island.classList.remove ('grow')
-            text.style.opacity=('0')
-            Island.classList.remove ('plus')
-        })
-        Island.addEventListener('click',function() {
-            text.style.transition=('all 0.1s ease')
-            Island.classList.toggle ('plus')
-        })
+        
     </script>
     </body>
 </html>
