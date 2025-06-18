@@ -81,8 +81,8 @@
         const hidden = document.querySelector('.hidden')
         const navbar = document.querySelector('.navbar')
 
-        Island.classList.add ('grow')
-        text.classList.add ('hidden')
+        Island.classList.remove ('grow')
+        text.classList.remove ('hidden')
         Island.addEventListener('click',function() {
             text.style.transition=('1s')
             text.innerText='Main Page'
