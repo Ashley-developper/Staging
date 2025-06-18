@@ -77,11 +77,11 @@
         const Islandgrow = document.querySelector('.Island.grow')
         const Islandplus = document.querySelector('.Island.plus')
         const text = document.querySelector('.text')
-        const text2 = document.querySelector('.text2')
         
         Island.classList.remove ('grow')
         Island.classList.remove ('plus')
         text.style.opacity=('0')
+        Islandplus.style.opacity=('0')
         
         Island.addEventListener('mouseenter',function() {
             text.style.transition=('1s')
