@@ -50,6 +50,10 @@
                 transition: 1s;
             }
 
+            .hidden {
+                display: none;
+            }
+            
             .logo {
                 position: fixed;
                 display: flex;
@@ -63,7 +67,7 @@
     <body>
         <nav class="navbar">
             <div class="Island grow">
-                <p class="text"></p>
+                <p class="text hidden"></p>
             </div>
             <a class="logo" href="/"><img src="https://i.ibb.co/DPCmRdtg/Ashley-light.png" width="70" height=auto></a>
         </nav>
@@ -74,13 +78,14 @@
         const Island = document.querySelector('.Island')
         const Islandgrow = document.querySelector('.Island.grow')
         const text = document.querySelector('.text')
+        const text = document.querySelector('.hidden')
         const navbar = document.querySelector('.navbar')
         
         Island.addEventListener('click',function() {
             text.style.transition=('1s')
             text.innerText='Main Page'
             Island.classList.toggle ('grow')
-            navbar.classList.toggle ('text')
+            text.classList.toggle ('hidden')
         })
         
     </script>
