@@ -39,14 +39,14 @@
                 height: 40px;
             }
 
-            .Island.text {
+            .text {
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
                 top: -20px;
                 display: flex;
                 color: white;
-                opacity: 0;
+                opacity: 1;
                 transition: 1s;
             }
 
@@ -62,7 +62,7 @@
     
     <body>
         <nav class="navbar">
-            <div class="Island grow text">
+            <div class="Island grow">
                 <p class="text"></p>
             </div>
             <a class="logo" href="/"><img src="https://i.ibb.co/DPCmRdtg/Ashley-light.png" width="70" height=auto></a>
@@ -73,14 +73,14 @@
         //Started June 16 17:48:07
         const Island = document.querySelector('.Island')
         const Islandgrow = document.querySelector('.Island.grow')
-        const text = document.querySelector('.Island.text')
-        Island.classList.remove ('grow')
-        text.style.opacity=('0')
+        const text = document.querySelector('.text')
+        const navbar = document.querySelector('.navbar')
+        
         Island.addEventListener('click',function() {
             text.style.transition=('1s')
             text.innerText='Main Page'
             Island.classList.toggle ('grow')
-            Island.classList.toggle ('text')
+            navbar.classList.toggle ('text')
         })
         
     </script>
