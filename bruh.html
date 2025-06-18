@@ -106,7 +106,6 @@
         Island.classList.remove ('grow')
         Island.classList.remove ('plus')
         text.style.opacity=('0')
-        text2.style.opacity=('1')
         Island.addEventListener('mouseenter',function() {
             text.style.transition=('1s')
             Island.classList.add ('grow')
@@ -117,14 +116,11 @@
             text.style.transition=('0.3s')
             Island.classList.remove ('grow')
             text.style.opacity=('0')
-            text2.style.opacity=('0')
             Island.classList.remove ('plus')
         })
         Island.addEventListener('click',function() {
             Island.classList.toggle ('plus')
-            text2.classList.toggle ('vis')
             text.style.transition=('all 0.3s ease')
-            text2.innerText='AOS 4.0 developper'
         })
     </script>
     </body>
