@@ -47,7 +47,7 @@
                 display: flex;
                 color: white;
                 opacity: 1;
-                transition: 1s;
+                transition: all 1s ease;
             }
 
             .hidden {
@@ -83,7 +83,6 @@
 
         Island.classList.remove ('grow')
         Island.addEventListener('click',function() {
-            text.style.transition=('1s')
             text.innerText='Main Page'
             Island.classList.toggle ('grow')
             text.classList.toggle ('hidden')
