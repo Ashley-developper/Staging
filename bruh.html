@@ -78,28 +78,32 @@
         const Islandplus = document.querySelector('.Island.plus')
         const text = document.querySelector('.text')
         const text2 = document.querySelector('.text2')
+        
         Island.classList.remove ('grow')
         Island.classList.remove ('plus')
         text.style.opacity=('0')
+        
         Island.addEventListener('mouseenter',function() {
             text.style.transition=('1s')
             Island.classList.add ('grow')
             text.style.opacity=('1')
             text.innerText='Developper BETA'
         })
+            
         Island.addEventListener('mouseleave',function() {
             text.style.transition=('0.3s')
             Island.classList.remove ('grow')
             text.style.opacity=('0')
         })
+
         Island.addEventListener('click',function() {
             Island.classList.toggle ('plus')
-            text.style.opacity=('0')
-            text.style.transition=('all 0.3s ease')
-            text.style.opacity=('1')
-            text.innerText='AOS 4.0'
-            
-        })
+                if (Island.classList.contains('plus')) {
+                    text.innerText: 'Main page'
+                    text.style.opacity=('1')
+                }else{
+                    text.innerText: 'AOS 4.0 BETA
+            })
     </script>
     </body>
 </html>
