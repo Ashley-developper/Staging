@@ -81,7 +81,6 @@
         Island.classList.remove ('grow')
         Island.classList.remove ('plus')
         text.style.opacity=('0')
-        Islandplus.style.opacity=('0')
         
         Island.addEventListener('mouseenter',function() {
             text.style.transition=('1s')
@@ -99,7 +98,7 @@
         Island.addEventListener('click',function() {
             Island.classList.toggle ('plus')
                 if (Island.classList.contains('plus')) {
-                    text.innerText: 'Main page'
+                    text.innerText= 'Main page'
                     text.style.opacity=('1')
                 }else{
                     text.innerText: 'AOS 4.0 BETA'
