@@ -56,9 +56,17 @@
             }
             
             .logo {
+                opacity: 0;
                 position: fixed;
                 display: flex;
             }
+
+            .visible {
+                display: flex;
+                position: fixed;
+                left: 4px;
+            }
+            
         </style>
         
     </head>
@@ -67,7 +75,7 @@
         <nav class="navbar">
             <div class="Island grow">
                 <p class="text hidden"></p>
-                <a class="logo" href="/"><img src="https://i.ibb.co/KjZ0wgkV/Ashley-light.png" width="10px" height=auto</a>
+                <a class="logo visible" href="/"><img src="https://i.ibb.co/KjZ0wgkV/Ashley-light.png" width="30px" height=auto</a>
             </div>
         </nav>
     </body>
