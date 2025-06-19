@@ -60,13 +60,6 @@
                 position: fixed;
                 display: flex;
             }
-
-            .logo.visible {
-                display: flex;
-                position: fixed;
-                left: 4px;
-                opacity: 1;
-            }
             
         </style>
         
@@ -76,7 +69,7 @@
         <nav class="navbar">
             <div class="Island grow">
                 <p class="text hidden"></p>
-                <a class="logo visible" href="/"><img src="https://i.ibb.co/KjZ0wgkV/Ashley-light.png" width="30px" height="auto"></a>
+                <a class="logo" href="/"><img src="https://i.ibb.co/KjZ0wgkV/Ashley-light.png" width="30px" height="auto"></a>
             </div>
         </nav>
     </body>
@@ -87,15 +80,12 @@
         const Islandgrow = document.querySelector('.Island.grow')
         const text = document.querySelector('.text')
         const hidden = document.querySelector('.hidden')
-        const logo = document.querySelector('.logo')
 
         Island.classList.remove ('grow')
-        Island.classList.add ('visible')
         Island.addEventListener('click',function() {
             text.innerText='Main Page'
             Island.classList.toggle ('grow')
             text.classList.toggle ('hidden')
-            logo.classList.toggle ('visible')
         })
         
     </script>
