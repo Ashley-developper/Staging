@@ -86,13 +86,17 @@
         const Islandgrow = document.querySelector('.Island.grow')
         const text = document.querySelector('.text')
         const hidden = document.querySelector('.hidden')
-        const navbar = document.querySelector('.navbar')
+        const logo = document.querySelector('.logo')
 
         Island.classList.remove ('grow')
         Island.addEventListener('click',function() {
             text.innerText='Main Page'
             Island.classList.toggle ('grow')
             text.classList.toggle ('hidden')
+        })
+
+        logo.addEventListener('click',function() {
+            logo.classList.toggle ('visible')
         })
         
     </script>
