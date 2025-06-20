@@ -106,9 +106,11 @@
         Island.addEventListener('click',function() {
             text.innerText='Main Page'
             Island.classList.toggle ('grow')
-            text.classList.toggle ('hidden')
             if (Island.classList.contains('.plus')) {
                 text.classList.add ('hidden')
+            else {
+                text.classList.toggle ('hidden')
+            }
             }
         })
 
