@@ -107,6 +107,9 @@
             text.innerText='Main Page'
             Island.classList.toggle ('grow')
             text.classList.toggle ('hidden')
+            if (Island.classList.contains('.plus')) {
+                text.classList.add ('hidden')
+            }
         })
 
         hamburger.addEventListener('click',function() {
