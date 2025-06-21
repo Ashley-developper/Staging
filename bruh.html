@@ -85,6 +85,10 @@
                 text-decoration: none;
             }
 
+            .sectionshid {
+                opacity: 0;
+            }
+
             .sections:hover {
                 text-decoration: underline;
             }
@@ -114,6 +118,7 @@
         const text = document.querySelector('.text')
         const hidden = document.querySelector('.hidden')
         const hamburger = document.querySelector('.hamburger')
+        const sections = document.querySelector('.sections')
 
         Island.classList.remove ('grow')
         Island.addEventListener('click',function() {
@@ -121,6 +126,7 @@
             Island.classList.toggle ('grow')
             if (Island.classList.contains('plus')) {
                 text.classList.remove ('hidden')
+                sections.classList.add ('sectionshid')
             } else if (Island.classList.contains('grow')){
                 text.classList.remove ('hidden')
             } else {
