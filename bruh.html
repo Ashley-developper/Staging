@@ -51,17 +51,33 @@
                 position: fixed;
                 display: flex;
                 background-color: black;
-                width: 370px;
-                height: 100px;
+                width: 0px;
+                height: 0px;
                 left: 50%;
                 top: 58px;
                 transform: translateX(-50%);
-                border-radius: 20px 20px 20px 20px;
+                border-radius: 29px 29px 29px 29px;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 justify-content: center;
                 align-items: center;
             }
+
+            .Island2.grow2 {
+                will-change: width, opacity, height;
+                position: fixed;
+                display: flex;
+                background-color: black;
+                width: 370px;
+                height: 100px;
+                left: 50%;
+                top: 58px;
+                transform: translateX(-50%);
+                border-radius: 29px 29px 29px 29px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                justify-content: center;
+                align-items: center;
 
             .text {
                 position: absolute;
@@ -112,7 +128,7 @@
         </nav>
         
         <nav class="navbar2">
-            <div class="Island2 grow2">
+            <div class="Island2">
                 
         </nav>
         
@@ -126,6 +142,8 @@
         const hidden = document.querySelector('.hidden')
         const hamburger = document.querySelector('.hamburger')
         const sections = document.querySelector('.sections')
+        const Island2 = document.querySelector('.Island2')
+        const Islandgrow2 = document.querySelector('.Island2.grow'2)
 
         Island.classList.remove ('grow')
         Island.addEventListener('click',function() {
@@ -133,10 +151,13 @@
             Island.classList.toggle ('grow')
             if (Island.classList.contains('plus')) {
                 text.classList.remove ('hidden')
+                Island2.classList.add ('grow2')
             } else if (Island.classList.contains('grow')){
                 text.classList.remove ('hidden')
+                Island2.classList.remove ('grow'2)
             } else {
                 text.classList.add ('hidden')
+                Island2.classList.add ('grow2')
             }
             
         })
