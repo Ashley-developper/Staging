@@ -127,13 +127,13 @@
             Island.classList.toggle ('grow')
             if (Island.classList.contains('plus')) {
                 text.classList.remove ('hidden')
-                sections.classList.add ('sectionshid')
+                sections.classList.remove ('sectionshid')
             } else if (Island.classList.contains('grow')){
                 text.classList.remove ('hidden')
-                sections.classList.remove ('sectionshid')
+                sections.classList.add ('sectionshid')
             } else {
                 text.classList.add ('hidden')
-                sections.classList.remove ('sectionshid')
+                sections.classList.add ('sectionshid')
             }
             
         })
