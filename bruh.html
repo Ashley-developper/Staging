@@ -81,6 +81,7 @@
             }
             
             .sections {
+                opacity: 1;
                 color: white;
                 text-decoration: none;
             }
@@ -129,8 +130,10 @@
                 sections.classList.add ('sectionshid')
             } else if (Island.classList.contains('grow')){
                 text.classList.remove ('hidden')
+                sections.classList.remove ('sectionshid')
             } else {
                 text.classList.add ('hidden')
+                sections.classList.remove ('sectionshid')
             }
             
         })
