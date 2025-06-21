@@ -161,7 +161,6 @@
         </nav>
         
     </body>
-    <!---
     <script>
         Started June 16 17:48:07
         const Island = document.querySelector('.Island')
@@ -195,44 +194,6 @@
             sections.classList.toggle ('sechid')
         })
         
-    </script>
--->
-    <script>
-        const Island = document.querySelector('.Island')
-const text = document.querySelector('.text')
-const hamburger = document.querySelector('.hamburger')
-const Island2 = document.querySelector('.Island2')
-const sections = document.querySelector('.sections')
-
-// 初始化，移除 grow 状态
-Island.classList.remove('grow')
-
-// 点击主 Island 展开缩放
-Island.addEventListener('click', function () {
-    // 如果已展开 plus，就不处理主点击（避免冲突）
-    if (Island.classList.contains('plus')) return
-
-    Island.classList.toggle('grow')
-    const isGrow = Island.classList.contains('grow')
-
-    text.innerText = 'Main Page'
-    text.classList.toggle('hidden', !isGrow)
-
-    // 下方 Island2 关闭
-    Island2.classList.remove('grow2')
-    sections.classList.add('sechid')
-})
-
-// 点击 hamburger 展开下方 Island2
-hamburger.addEventListener('click', function () {
-    Island.classList.toggle('plus')
-
-    const isPlus = Island.classList.contains('plus')
-    text.classList.add('hidden') // 一定要隐藏主文字
-    Island2.classList.toggle('grow2', isPlus)
-    sections.classList.toggle('sechid', !isPlus)
-})
-
     </script>
     </body>
 </html>
