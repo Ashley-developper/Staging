@@ -80,19 +80,6 @@
                 font-size: 30px;
             }
             
-            .sections {
-                opacity: 1;
-                color: white;
-                text-decoration: none;
-            }
-
-            .sectionshid {
-                opacity: 0;
-            }
-
-            .sections:hover {
-                text-decoration: underline;
-            }
 
         </style>
         
@@ -104,12 +91,6 @@
                 <p class="text hidden"></p>
                 <a class="logo" href="/"><img src="https://i.ibb.co/KjZ0wgkV/Ashley-light.png" width="30px" height="auto"></a>
                 <div class='hamburger'>☰</div>
-                <div class="sections sectionshid">
-                    <a href="">About Us</a>
-                    <a href="">More info</a>
-                    <a href="">Contact</a>
-                    <a href="">Update Log</a>
-                </div>
             </div>
         </nav>
     </body>
@@ -129,13 +110,10 @@
             Island.classList.toggle ('grow')
             if (Island.classList.contains('plus')) {
                 text.classList.remove ('hidden')
-                sections.classList.remove ('sectionshid')
             } else if (Island.classList.contains('grow')){
                 text.classList.remove ('hidden')
-                sections.classList.add ('sectionshid')
             } else {
                 text.classList.add ('hidden')
-                sections.classList.add ('sectionshid')
             }
             
         })
