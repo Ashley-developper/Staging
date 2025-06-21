@@ -120,7 +120,7 @@
                 color: white;
                 text-decoration: none;
                 justify-content: space-between;
-                align-itmes: center;
+                align-items: center;
             }
 
             .sechid {
@@ -163,6 +163,7 @@
         const sections = document.querySelector('.sections')
         const Island2 = document.querySelector('.Island2')
         const Islandgrow2 = document.querySelector('.Island2.grow2')
+        const sections = document.querySelector('.sections')
 
         Island.classList.remove ('grow')
         Island.addEventListener('click',function() {
@@ -171,12 +172,15 @@
             if (Island.classList.contains('plus')) {
                 text.classList.remove ('hidden')
                 Island2.classList.add ('grow2')
+                sections.classList.remove ('sechid')
             } else if (Island.classList.contains('grow')){
                 text.classList.remove ('hidden')
                 Island2.classList.remove ('grow2')
+                sections.classList.add ('sechid')
             } else {
                 text.classList.add ('hidden')
                 Island2.classList.remove ('grow2')
+                sections.classList.add ('sechid')
             }
             
         })
