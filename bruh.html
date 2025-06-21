@@ -39,13 +39,6 @@
                 height: 40px;
             }
 
-            .Island.plus {
-                padding: 0px 10px;
-                min-width: 120px;
-                width: 270px;
-                height: 40px;
-            }
-
             .Island2 {
                 will-change: width, opacity, height;
                 position: fixed;
@@ -176,10 +169,8 @@
         Island.addEventListener('click',function() {
             text.innerText='Main Page'
             Island.classList.toggle ('grow')
-            if (Island.classList.contains('plus')) {
-                text.classList.remove ('hidden')
-                Island2.classList.add ('grow2')
-            } else if (Island.classList.contains('grow')){
+            sections.classList.add ('sechid')
+            if (Island.classList.contains('grow')){
                 text.classList.remove ('hidden')
                 Island2.classList.remove ('grow2')
             } else {
@@ -189,9 +180,9 @@
         })
 
         hamburger.addEventListener('click',function() {
-            Island.classList.toggle ('plus')
+            Island2.classList.add ('grow2')
             text.classList.add ('hidden')
-            sections.classList.toggle ('sechid')
+            sections.classList.remove ('sechid')
         })
         
     </script>
