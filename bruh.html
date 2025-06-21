@@ -46,6 +46,23 @@
                 height: 100px;
             }
 
+            .Island {
+                will-change: width, opacity, height;
+                position: fixed;
+                display: flex;
+                background-color: black;
+                width: 170px;
+                height: 40px;
+                left: 50%;
+                top: 24px;
+                transform: translateX(-50%);
+                border-radius: 20px 20px 20px 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                justify-content: center;
+                align-items: center;
+            }
+
             .text {
                 position: absolute;
                 left: 50%;
@@ -93,6 +110,12 @@
                 <div class='hamburger'>☰</div>
             </div>
         </nav>
+        
+        <nav class="navbar2">
+            <div class="Island2 grow2">
+                
+        </nav>
+        
     </body>
     
     <script>
