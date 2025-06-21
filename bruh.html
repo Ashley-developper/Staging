@@ -180,22 +180,19 @@
             if (Island.classList.contains('plus')) {
                 text.classList.remove ('hidden')
                 Island2.classList.add ('grow2')
-                sections.classList.remove ('sechid')
             } else if (Island.classList.contains('grow')){
                 text.classList.remove ('hidden')
                 Island2.classList.remove ('grow2')
-                sections.classList.add ('sechid')
             } else {
                 text.classList.add ('hidden')
                 Island2.classList.remove ('grow2')
-                sections.classList.add ('sechid')
             }
-            
         })
 
         hamburger.addEventListener('click',function() {
             Island.classList.toggle ('plus')
             text.classList.add ('hidden')
+            sections.classList.toggle ('sechid')
         })
         
     </script>
