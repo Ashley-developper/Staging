@@ -2,127 +2,128 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <!-- META FOR GOOGLE CONSOLE -->
         <meta name="description" content="Ashley studio, interested in everthing in the world. We also help people building personal website, like this.">
         <meta name="keywords" content="Ashley, Interest, Personal website, Ashley Studio">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Zhanyi Zhou">
         <title> AOS 4 developper BETA</title>
         <link rel="icon" href="https://i.ibb.co/DPCmRdtg/Ashley-light.png">
-        <style>
-            body{
-                background: white;
-                font-family: Garamond, serif;
-                font-size: 25px;
-            }
+            <style>
+                body{
+                    background: white;
+                    font-family: Garamond, serif;
+                    font-size: 25px;
+                }
             
-            .Island {
-                will-change: width, opacity, height;
-                position: fixed;
-                display: flex;
-                background-color: black;
-                width: 170px;
-                height: 40px;
-                left: 50%;
-                top: 14px;
-                transform: translateX(-50%);
-                border-radius: 20px 20px 20px 20px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                justify-content: center;
-                align-items: center;
-            }
+                .Island {
+                    will-change: width, opacity, height;
+                    position: fixed;
+                    display: flex;
+                    background-color: black;
+                    width: 170px;
+                    height: 40px;
+                    left: 50%;
+                    top: 14px;
+                    transform: translateX(-50%);
+                    border-radius: 20px 20px 20px 20px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    justify-content: center;
+                    align-items: center;
+                }
 
-            .Island.grow {
-                padding: 0px 10px;
-                min-width: 120px;
-                width: 270px;
-                height: 40px;
-            }
+                .Island.grow {
+                    padding: 0px 10px;
+                    min-width: 120px;
+                    width: 270px;
+                    height: 40px;
+                }
 
-            .Island2 {
-                will-change: width, opacity, height;
-                position: fixed;
-                display: flex;
-                background-color: black;
-                width: 0px;
-                height: 0px;
-                left: 50%;
-                top: 58px;
-                transform: translateX(-50%);
-                border-radius: 29px 29px 29px 29px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                justify-content: center;
-                align-items: center;
-            }
+                .Island2 {
+                    will-change: width, opacity, height;
+                    position: fixed;
+                    display: flex;
+                    background-color: black;
+                    width: 0px;
+                    height: 0px;
+                    left: 50%;
+                    top: 58px;
+                    transform: translateX(-50%);
+                    border-radius: 29px 29px 29px 29px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    justify-content: center;
+                    align-items: center;
+                }
 
-            .Island2.grow2 {
-                padding: 0px 10px;
-                min-width: 120px;
-                width: 370px;
-                height: 50px;
-            }
+                .Island2.grow2 {
+                    padding: 0px 10px;
+                    min-width: 120px;
+                    width: 370px;
+                    height: 50px;
+                }
             
-            .text {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                top: -20px;
-                display: flex;
-                color: white;
-                opacity: 1;
-                transition: all 1s ease;
-            }
+                .text {
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    top: -20px;
+                    display: flex;
+                    color: white;
+                    opacity: 1;
+                    transition: all 1s ease;
+                }
 
-            .hidden {
-                opacity: 0;
-                transition: 0.3s;
-            }
+                .hidden {
+                    opacity: 0;
+                    transition: 0.3s;
+                }
             
-            .logo {
-                opacity: 1;
-                position: fixed;
-                display: flex;
-                left: 7px;
-                top: 5px;
-            }
+                .logo {
+                    opacity: 1;
+                    position: fixed;
+                    display: flex;
+                    left: 7px;
+                    top: 5px;
+                }
 
-            .hamburger {
-                color: white;
-                opacity: 1;
-                position: fixed;
-                display: flex;
-                justify-content: space-between;
-                right: 8px;
-                top: -4px;
-                font-size: 30px;
-            }
+                .hamburger {
+                    color: white;
+                    opacity: 1;
+                    position: fixed;
+                    display: flex;
+                    justify-content: space-between;
+                    right: 8px;
+                    top: -4px;
+                    font-size: 30px;
+                }
             
-            .sections {
-                display: flex;
-                opacity: 1;
-                justify-content: space-between;
-                align-items: center;
-                transition: all 1s ease;
-            }
+                .sections {
+                    display: flex;
+                    opacity: 1;
+                    justify-content: space-between;
+                    align-items: center;
+                    transition: all 1s ease;
+                }
 
-            .sections a{
-                opacity: 1;
-                color: white;
-                text-decoration: none;
-                transition: all 1s ease;
-                padding: 10px;
-            }
+                .sections a{
+                    opacity: 1;
+                    color: white;
+                    text-decoration: none;
+                    transition: all 1s ease;
+                    padding: 10px;
+                }
 
-            .sechid {
-                display: none;
-                transition: all 1s ease;
-            }
-        </style>
-        
+                .sechid {
+                    display: none;
+                    transition: all 1s ease;
+                }
+        </style> 
     </head>
-    
+    <!-- BODY PART (NAVBAR)-->
     <body>
+        <!-- STILL SOME ISSUES NOT SOLVED YET-->
         <nav class="navbar">
             <div class="Island grow">
                 <p class="text hidden"></p>
@@ -140,39 +141,37 @@
                 </div>           
             </nav>
         </nav>
-        
-    </body>
-    <script defer>
-        //Started June 16 17:48:07
-        const Island = document.querySelector('.Island')
-        const Islandgrow = document.querySelector('.Island.grow')
-        const text = document.querySelector('.text')
-        const hidden = document.querySelector('.hidden')
-        const hamburger = document.querySelector('.hamburger')
-        const Island2 = document.querySelector('.Island2')
-        const Islandgrow2 = document.querySelector('.Island2.grow2')
-        const sections = document.querySelector('.sections')
+        <script defer>
+            //Javascript for the navbar island
+            //Started June 16 17:48:07
+            const Island = document.querySelector('.Island')
+            const Islandgrow = document.querySelector('.Island.grow')
+            const text = document.querySelector('.text')
+            const hidden = document.querySelector('.hidden')
+            const hamburger = document.querySelector('.hamburger')
+            const Island2 = document.querySelector('.Island2')
+            const Islandgrow2 = document.querySelector('.Island2.grow2')
+            const sections = document.querySelector('.sections')
 
-        Island.classList.remove ('grow')
-        Island.addEventListener('click',function() {
-            text.innerText='Main Page'
-            Island.classList.toggle ('grow')
-            sections.classList.add ('sechid')
-            if (Island.classList.contains('grow')){
-                text.classList.remove ('hidden')
-                Island2.classList.remove ('grow2')
-            } else {
-                text.classList.add ('hidden')
-                Island2.classList.remove ('grow2')
-            }
-        })
+            Island.classList.remove ('grow')
+            Island.addEventListener('click',function() {
+                text.innerText='Main Page'
+                Island.classList.toggle ('grow')
+                sections.classList.add ('sechid')
+                if (Island.classList.contains('grow')){
+                    text.classList.remove ('hidden')
+                    Island2.classList.remove ('grow2')
+                } else {
+                    text.classList.add ('hidden')
+                    Island2.classList.remove ('grow2')
+                }
+            })
 
-        hamburger.addEventListener('click',function() {
-            console.log('hamburger clicked')
-            sections.classList.remove ('sechid')
-            Island2.classList.add ('grow2')
-        })
-        
-    </script>
+            hamburger.addEventListener('click',function() {
+                console.log('hamburger clicked')
+                sections.classList.remove ('sechid')
+                Island2.classList.add ('grow2')
+            })
+        </script>
     </body>
 </html>
