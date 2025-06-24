@@ -157,7 +157,6 @@
             Island.addEventListener('click',function() {
                 text.innerText='Main Page';
                 Island.classList.toggle ('grow');
-                sections.classList.add ('sechid');
                 if (Island.classList.contains('grow')){
                     text.classList.remove ('hidden');
                 } else {
@@ -169,6 +168,7 @@
                 console.log('hamburger clicked');
                 Island2.classList.toggle ('grow2');
                 sections.classList.toggle ('sechid');
+                Island.classList.remove ('grow');
             })
         </script>
     </body>
