@@ -153,24 +153,22 @@
             const Islandgrow2 = document.querySelector('.Island2.grow2')
             const sections = document.querySelector('.sections')
 
-            Island.classList.remove ('grow')
+            Island.classList.remove ('grow');
             Island.addEventListener('click',function() {
-                text.innerText='Main Page'
-                Island.classList.toggle ('grow')
-                sections.classList.add ('sechid')
+                text.innerText='Main Page';
+                Island.classList.toggle ('grow');
+                sections.classList.add ('sechid');
                 if (Island.classList.contains('grow')){
-                    text.classList.remove ('hidden')
-                    Island2.classList.remove ('grow2')
+                    text.classList.remove ('hidden');
                 } else {
-                    text.classList.add ('hidden')
-                    Island2.classList.remove ('grow2')
+                    text.classList.add ('hidden');
                 }
             })
 
             hamburger.addEventListener('click',function() {
-                console.log('hamburger clicked')
-                sections.classList.remove ('sechid')
-                Island2.classList.add ('grow2')
+                console.log('hamburger clicked');
+                Island2.classList.add ('grow2');
+                sections.classList.remove ('sechid');
             })
         </script>
     </body>
