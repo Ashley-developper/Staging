@@ -222,6 +222,11 @@
                 Island2.classList.toggle ('grow2');
                 sections.classList.toggle ('sechid');
                 Island.classList.add('grow');
+            //Scroll Animation (BETA)
+                gsap.to('.box', {
+	            scrollTrigger: '.intro', // start the animation when ".box" enters the viewport (once)
+	            x: 500
+                });
             })
         </script>
     </body>
