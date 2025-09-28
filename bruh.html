@@ -194,6 +194,10 @@
             <h2 class="cotitA1">Personal website</h2>
             <!--<img class="img1" src="apple-xxl.png">-->
         </div>
+
+		<div class="QA">
+			<canvas id="Q1" width="300" height="150" style="border:1px solid grey" position="absolute">
+		</div>
         <script defer>
             //Javascript for the navbar island
             //Started June 16 17:48:07
@@ -205,6 +209,8 @@
             const Island2 = document.querySelector('.Island2')
             const Islandgrow2 = document.querySelector('.Island2.grow2')
             const sections = document.querySelector('.sections')
+			const canvas = document.getElementById("Q1");
+			const ctx = canvas.getContext("2d");
 
             Island.classList.remove ('grow');
             Island.addEventListener('click',function() {
@@ -228,6 +234,15 @@
 	            x: 500
                 });
             })
+
+			ctx.shadowColor = "#FFD580";
+			ctx.shadowOffsetX = 5;
+			ctx.shadowOffsetY = 5;
+
+			ctx.font = "50px cursive";
+
+			ctx.fillStyle = "orange";
+			ctx.fillText("Who are you?",400,60);
         </script>
     </body>
 </html>
