@@ -11,15 +11,18 @@
         <style>
         </style>
     </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
 <script>
     //game developpement (GD), started in 27-09-2025 20:26:45
-    function setup() {
-  createCanvas(400, 400);
-}
+    var setup = function {
+        background (255, 191, 128)
+        fill (255, 255, 255)
+        textSize(25)
+        text("Begin of GD", 10, 200)
+    }
 
-function draw() {
-  background(200);
-  ellipse(mouseX, mouseY, 50, 50);
-}
+    setup()
 
 </script>
+</body>
+</html>
