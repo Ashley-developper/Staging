@@ -13,13 +13,13 @@
     </head>
 <script>
     //game developpement (GD), started in 27-09-2025 20:26:45
-    var setup = function () {
-        background(255, 206, 116, 1);
-        fill(0, 85, 255)
-        textSize(25);
-        text(" Begin of our GD")
-    };
+    function setup() {
+  createCanvas(400, 400);
+}
 
-    setup()
-    
+function draw() {
+  background(200);
+  ellipse(mouseX, mouseY, 50, 50);
+}
+
 </script>
