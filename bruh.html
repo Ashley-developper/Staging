@@ -166,7 +166,6 @@
                     position: absolute;
                     height: 60px;
                     top: 65px;
-                    align-items: center;
                 }
 
 				.QA1 {
@@ -175,10 +174,12 @@
 					left: 20px;
 					background-color: rgba(255, 243, 222, 0.8);
 					border-radius: 20px;
+					align-items: center;
 				}
 
 				#Q1 {
 					position: relative;
+					display: flex;
 					font-family: Impact, Charcoal, sans-serif;
 					font-size: 60px;
 					font-weight: 800;
@@ -186,9 +187,8 @@
 				}
 					
 				 #p1 {
-                    position: absolute;
-                    left:5px;
-                    right: 10px;
+                    position: relative;
+					 display: flex;
                 }
 
 				
@@ -223,7 +223,6 @@
         </div>
 
 		<div class="QA1">
-			<canvas id="BG1" width="500" height="300"></canvas>
 			<h1 id="Q1"><strong>Hey! Nice to see you!👀</strong></h1>
 			<p id="p1">Hi! I’m Zhanyi Zhou, a 13‑year‑old secondary school student living in Québec, Canada. Just like most students, I have regular school days, but I also make time to explore other interests and projects. That curiosity is what inspired me to create this website.Here, I share things I’m learning, ideas I find exciting, and projects I’m working on. It’s my personal space to explore, learn, and connect.Thanks for stopping by — feel free to explore and learn along with me!</p>
 			
@@ -239,8 +238,6 @@
             const Island2 = document.querySelector('.Island2')
             const Islandgrow2 = document.querySelector('.Island2.grow2')
             const sections = document.querySelector('.sections')
-			const canvas = document.GetElementByID("BG1")
-			const ctx = canvas.getContext("2d");
 
             Island.classList.remove ('grow');
             Island.addEventListener('click',function() {
@@ -260,7 +257,6 @@
                 Island.classList.add('grow');
             });
 
-			ctx.
         </script>
     </body>
 </html>
