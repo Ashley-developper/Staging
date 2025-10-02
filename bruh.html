@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+		<!-- Copyright © 2025 Zhanyi Zhou. All rights reserved. -->
+		<!-- Copyright © 2025 Ashley Studio (Zhanyi Zhou). All rights reserved. -->
         <meta charset="UTF-8">
         <!-- META FOR GOOGLE CONSOLE -->
         <meta name="description" content="Ashley studio, interested in everthing in the world. We also help people building personal website, like this.">
@@ -172,6 +174,12 @@
 					top: 350px;
 				}
 
+				#Q1 {
+					position: absolute;
+					font-size: 50px;
+				}
+					
+
 				
         </style> 
     </head>
@@ -204,7 +212,7 @@
         </div>
 
 		<div class="QA">
-			<canvas id="Q1" width="600" height="150"></canvas>
+			<h1 id="Q1"><strong>𝚆𝚑𝚘 𝚊𝚛𝚎 𝚢𝚘𝚞?👀</strong></h1>
 		</div>
         <script defer>
             //Javascript for the navbar island
@@ -236,21 +244,9 @@
                 Island2.classList.toggle ('grow2');
                 sections.classList.toggle ('sechid');
                 Island.classList.add('grow');
-            //Scroll Animation (BETA)
-                gsap.to('.box', {
-	            scrollTrigger: '.intro', // start the animation when ".box" enters the viewport (once)
-	            x: 500
                 });
             })
 
-			ctx.shadowColor = "grey";
-			ctx.shadowOffsetX = 5;
-			ctx.shadowOffsetY = 5;
-
-			ctx.font = "50px 'Anton'";
-
-			ctx.fillStyle = "black";
-			ctx.fillText("Who are you?",-300,75);
         </script>
     </body>
 </html>
