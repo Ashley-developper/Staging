@@ -177,6 +177,7 @@
 				#Q1 {
 					position: absolute;
 					font-size: 50px;
+					left:
 				}
 					
 
@@ -225,8 +226,6 @@
             const Island2 = document.querySelector('.Island2')
             const Islandgrow2 = document.querySelector('.Island2.grow2')
             const sections = document.querySelector('.sections')
-			const canvas = document.getElementById("Q1");
-			const ctx = canvas.getContext("2d");
 
             Island.classList.remove ('grow');
             Island.addEventListener('click',function() {
@@ -244,9 +243,7 @@
                 Island2.classList.toggle ('grow2');
                 sections.classList.toggle ('sechid');
                 Island.classList.add('grow');
-                });
-            })
-
+            });
         </script>
     </body>
 </html>
