@@ -287,7 +287,7 @@
     			if (window.innerWidth <= 768) {
         			Island2.classList.toggle ('grow2');
 					Island.classList.add('grow');
-					txt.innerText('You have a mobile device. Some context may not display.')
+					txt.innerText = "You have a mobile device. Some context may not display.";
 					setTimeout(() => {
 						Island2.classList.toggle ('grow2');
 						Island.classList.add('hidden');
@@ -295,7 +295,7 @@
     		} else {
         		    Island2.classList.toggle ('grow2');
 					Island.classList.add('grow');
-					txt.innerText('Hey! Welcome.')
+					txt.innerText = "Hey! Welcome.";
     			}
 			});
 
