@@ -214,6 +214,24 @@
 					right: 0%;
 					font-family: "Chalkduster", fantasy;
 				}
+
+				.msg1 {
+					display: none;
+					position: absolute:
+					top: 30px;
+					left: 30px;
+					background-image: linear-gradient(to right, white, lightblue,lightblue,lightblue, lightblue, white);
+					border-radius: 60px;
+				}
+
+				.msg2 {
+					display: flex;
+					position: absolute:
+					top: 30px;
+					left: 30px;
+					background-image: linear-gradient(to right, white, lightblue,lightblue,lightblue, lightblue, white);
+					border-radius: 60px;
+				}
 				
         </style> 
     </head>
@@ -238,6 +256,10 @@
             </div>
         </nav>
 
+		<div class="msg">
+			<div class="msg1">Hey! Welcome :D</div>
+		</div>
+		
         <div class="intro">
             <img class="img2" src="HELLOAPPLE.png">
             <h1 class="titleA1">Zhanyi Zhou</h1>
@@ -263,7 +285,7 @@
             const Island2 = document.querySelector('.Island2')
             const Islandgrow2 = document.querySelector('.Island2.grow2')
             const sections = document.querySelector('.sections')
-			const txt = document.querySelector ('.txt')
+			const msg = document.querySelector ('#msg')
 
             Island.classList.remove ('grow');
             Island.addEventListener('click',function() {
@@ -283,21 +305,10 @@
                 Island.classList.add('grow');
             });
 
-			window.addEventListener("resize", function() {
-    			if (window.innerWidth <= 768) {
-        			Island2.classList.toggle ('grow2');
-					Island.classList.add('grow');
-					txt.innerHTML = '<a class= "txt">Hey Welcome dude!</a>';
-					setTimeout(() => {
-						Island2.classList.toggle ('grow2');
-						Island.classList.add('hidden');
-					}, 5000);
-    		} else {
-        		    Island2.classList.toggle ('grow2');
-					Island.classList.add('grow');
-					txt.innerHTML = '<a class= "txt">Hey Welcome dude!</a>';
-    			}
+			msg.addEventListener("load", function() {
+    			msg.classList.add('.msg2')
 			});
+			
 
         </script>
     </body>
