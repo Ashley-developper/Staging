@@ -215,23 +215,38 @@
 					font-family: "Chalkduster", fantasy;
 				}
 
-				.msg1 {
-					display: none;
-					position: absolute:
-					top: 30px;
-					left: 30px;
-					background-image: linear-gradient(to right, white, lightblue,lightblue,lightblue, lightblue, white);
-					border-radius: 60px;
+				.msg {
+                    will-change: width, opacity, height;
+                    position: fixed;
+                    display: flex;
+                    background-color: black;
+                    width: 210px;
+                    height: 140px;
+                    top: 14px;
+					right: 90%
+                    border-radius: 20px ;
+                    transition: all 0.5s ease;
+                    justify-content: center;
+                    align-items: center;
+					Opacity: 0;
 				}
 
 				.msg2 {
-					display: flex;
-					position: absolute:
-					top: 30px;
-					left: 30px;
-					background-image: linear-gradient(to right, white, lightblue,lightblue,lightblue, lightblue, white);
-					border-radius: 60px;
+					will-change: width, opacity, height;
+                    position: fixed;
+                    display: flex;
+                    background-color: black;
+                    width: 210px;
+                    height: 140px;
+                    top: 14px;
+					right: 90%
+                    border-radius: 20px ;
+                    transition: all 0.5s ease;
+                    justify-content: center;
+                    align-items: center;
+					Opacity: 1;
 				}
+
 				
         </style> 
     </head>
@@ -256,9 +271,7 @@
             </div>
         </nav>
 
-		<div class="msg">
-			<div class="msg1">Hey! Welcome :D</div>
-		</div>
+		<div class="msg">Hey, Welcome!</div>
 		
         <div class="intro">
             <img class="img2" src="HELLOAPPLE.png">
@@ -285,7 +298,7 @@
             const Island2 = document.querySelector('.Island2')
             const Islandgrow2 = document.querySelector('.Island2.grow2')
             const sections = document.querySelector('.sections')
-			const msg = document.querySelector ('.msg1')
+			const msg = document.querySelector ('.msg')
 
             Island.classList.remove ('grow');
             Island.addEventListener('click',function() {
