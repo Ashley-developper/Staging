@@ -220,8 +220,8 @@
                     position: fixed;
                     display: flex;
                     background-color: black;
-                    width: 210px;
-                    height: 140px;
+                    width: 230px;
+                    height: 120px;
                     top: 14px;
 					right: 110%;
                     border-radius: 20px ;
@@ -236,10 +236,10 @@
                     position: fixed;
                     display: flex;
                     background-color: black;
-                    width: 210px;
-                    height: 140px;
+                    width: 230px;
+                    height: 120px;
                     top: 14px;
-					right: 85%;
+					right: 84%;
                     border-radius: 20px ;
                     transition: all 0.7s ease;
                     justify-content: center;
@@ -321,6 +321,9 @@
 
 			window.addEventListener("load", function() {
     			msg.classList.add('msg2')
+				setTimeout(() => {
+    				msg.classList.remove("msg2");
+				}, 5000);
 			});
 			
 
