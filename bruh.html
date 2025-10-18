@@ -313,6 +313,8 @@
 
 				.endnav {
 					position: absolute;
+					display: flex;
+					flex-direction: row;
 					top: 2300px;
 					left: 0px;
                     height: 300px;
@@ -328,7 +330,7 @@
 					font-size: 20px;
 				}
 
-				#endnav1 {
+				.endnav1 {
 					color: rgb(23,23,23);
 				}
 				
@@ -348,6 +350,13 @@
 
 				.SM2:active{
 					color: rgb(173,173,175);
+				}
+
+				.endnav2 {
+					display: flex;
+					flex-direction: column;
+					font-family: "American Typewriter Light", "American Typewriter", serif;
+					font-size: 20px;
 				}
 				
         </style> 
@@ -399,15 +408,24 @@
 
 		<div class="endnav">
 			<div class="endnav1">
-				<h2 id="endnav1">Social media </h2>
+				<h2 class="endnav1">Social media </h2>
 				<a href="http://bilibili.com" class="SM1">Bilibili</a>
 				<a class="SM2">Youtube</a>
 				<a class="SM2">Facebook</a>
 				<a class="SM2">Intagram</a>
 			</div>
+
+			<div class="endnav2">
+				<h2 class="endnav1">Pages</h2>
+				<a href="/AboutUs" class = "SM1">About Me</a>
+				<a href="/MoreInfo" class = "SM1">More information</a>
+				<a href="/Contact" class = "SM1">Contact me</a>
+				<a href="/UpdateLog" class = "SM1">Update Log</a>
+			</div>
+			
 		</div>
 
-		
+	
 		<!--All code was properly made by Zhanyi Zhou :)-->
         <script defer>
             //Javascript for the navbar island
