@@ -1,483 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-		<!-- Copyright © 2025 Zhanyi Zhou. All rights reserved. -->
-		<!-- Copyright © 2025 Ashley Studio (Zhanyi Zhou). All rights reserved. -->
-        <meta charset="UTF-8">
-        <!-- META FOR GOOGLE CONSOLE -->
-        <meta name="description" content="Zhanyi Zhou, Personal Website">
-        <meta name="keywords" content="Zhanyi Zhou, Interest, Personal website, Zhanyi">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Zhanyi Zhou">
-        <title> AOS 4 developper BETA</title>
-        <link rel="icon" href="https://i.ibb.co/DPCmRdtg/Ashley-light.png">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
-            <style>
-                body{
-                    background: white;
-                    font-family: Garamond, serif;
-                    font-size: 25px;
-                }
-            
-                .Island {
-					z-index: 9999;
-                    will-change: width, opacity, height;
-                    position: fixed;
-                    display: flex;
-                    background-color: black;
-                    width: 170px;
-                    height: 40px;
-                    left: 50%;
-                    top: 14px;
-                    transform: translateX(-50%);
-                    border-radius: 20px 20px 20px 20px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    justify-content: center;
-                    align-items: center;
-                }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AOS 6 - [Abstract//Glitch]</title>
+    <link rel="icon" href="https://i.ibb.co/DPCmRdtg/Ashley-light.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-                .grow {
-                    padding: 0px 10px;
-                    min-width: 120px;
-                    width: 270px;
-                    height: 40px;
-                }
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --neon-blue: #00FFFF;
+            --neon-pink: #FF00FF;
+            --text-main: #FFFFFF;
+            --text-code: 'JetBrains Mono', monospace;
+            --text-art: 'Italiana', serif;
+        }
 
-                .Island2 {
-					z-index: 9999;
-                    will-change: width, opacity, height;
-                    position: fixed;
-                    display: flex;
-                    background-color: black;
-                    width: 0px;
-                    height: 0px;
-                    left: 50%;
-                    top: 60px;
-                    transform: translateX(-50%);
-                    border-radius: 29px 29px 29px 29px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    justify-content: center;
-                    align-items: center;
-                }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
 
-                .grow2 {
-                    padding: 0px 10px;
-                    width: 500px;
-                    height: 40px;
-                }
-            
-                .text {
-                    position: absolute;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    top: -20px;
-                    display: flex;
-                    color: white;
-                    opacity: 1;
-                    transition: all 1s ease;
-                }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--text-code);
+            overflow: hidden;
+            cursor: crosshair; /* 科技感光标 */
+        }
 
-                .hidden {
-                    opacity: 0;
-                    transition: 0.3s;
-                }
-            
-                .logo {
-                    opacity: 1;
-                    position: fixed;
-                    display: flex;
-                    left: 7px;
-                    top: 5px;
-                }
+        a { text-decoration: none; color: var(--neon-blue); transition: 0.3s; }
+        a:hover { color: var(--neon-pink); }
+        
+        /* --- 核心：全屏滚动容器 --- */
+        .snap-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
 
-                .hamburger {
-                    color: white;
-                    opacity: 1;
-                    position: fixed;
-                    display: flex;
-                    justify-content: space-between;
-                    right: 8px;
-                    top: -4px;
-                    font-size: 30px;
-                }
-            
-                .sections {
-                    display: flex;
-                    opacity: 1;
-                    justify-content: space-between;
-                    align-items: center;
-                    transition: all 1s ease;
-                }
+        section {
+            height: 100vh;
+            scroll-snap-align: start;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        /* --- 故障艺术动画 (Glitch Animations) --- */
+        @keyframes glitch-skew {
+            0% { transform: skewX(0deg); }
+            50% { transform: skewX(1deg); }
+            100% { transform: skewX(0deg); }
+        }
 
-                .sections a{
-                    display: flex;
-                    overflow: hidden; 
-                    height: auto;
-                    opacity: 1;
-                    color: white;
-                    text-decoration: none;
-                    transition: all 0.2s ease;
-                    padding: 10px;
-                }
+        @keyframes glitch-text {
+            0%, 100% { text-shadow: 0 0 0 transparent; }
+            5% { text-shadow: -1px 0 var(--neon-blue), 1px 0 var(--neon-pink); }
+            10% { text-shadow: -1px 0 var(--neon-pink), 1px 0 var(--neon-blue); }
+            15% { text-shadow: 2px 0 var(--neon-blue), -2px 0 var(--neon-pink); }
+        }
 
-                .sections a:hover{
-                    display: flex;
-                    overflow: hidden; 
-                    opacity: 1;
-                    color: white;
-                    text-decoration: underline;
-                    transition: all 1s ease;
-                    padding: 10px;
-                }
+        /* --- 滚动入场动画 (Entrance Animations) --- */
+        .module {
+            opacity: 0;
+            transform: perspective(1000px) rotateY(15deg) translateY(100px);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-                .sechid {
-                    position: absolute;
-                    opacity: 0;
-                    overflow: hidden; 
-                    pointer-events: none;
-                    transition: all 0.2s ease;
-                }
+        section.in-view .module {
+            opacity: 1;
+            transform: perspective(1000px) rotateY(0deg) translateY(0);
+        }
 
-                .intro {
-                    background-color: antiquewhite;
-                    position: absolute;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 100%;
-                    top: 0;
-                    left: 0px;
-                    z-index: -1;
-                    flex-direction: column;
-                }
+        .module-delay-1 { transition-delay: 0.3s; }
+        .module-delay-2 { transition-delay: 0.6s; }
 
-                .titleA1 {
-                    color:orange;
-                    font-weight: bold;
-                    margin-top: 145px;
-                }
+        /* --- 1. HERO SECTION (巨型故障字体) --- */
+        .hero-title-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-family: var(--text-art);
+            font-size: 18vw;
+            line-height: 0.8;
+            text-align: center;
+            color: var(--text-main);
+            animation: glitch-text 3s infinite alternate;
+            text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-pink);
+            cursor: pointer;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            color: var(--neon-blue);
+            text-align: center;
+            margin-top: 30px;
+        }
 
-                .cotitA1 {
-                    color: cornflowerblue;
-                    font-weight: bold;
-                }
+        .hero-title:hover {
+             animation: glitch-skew 0.3s infinite, glitch-text 0.1s infinite; /* Hover时加速故障 */
+        }
+        
+        /* --- 2. DATA STREAM (信息模块) --- */
+        .data-stream {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 40px;
+            width: 80%;
+            max-width: 900px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+        
+        .data-stream h2 {
+            font-size: 2rem;
+            color: var(--neon-pink);
+            margin-bottom: 25px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
 
-                .img2 {
-                    position: absolute;
-                    height: 60px;
-                    top: 65px;
-                }
+        .data-block {
+            margin-bottom: 30px;
+        }
 
-				.QA1 {
-					position: absolute;
-					top: 370px;
-					left: 20px;
-					right: 50%;
-					background-color: rgba(255, 243, 222, 0.8);
-					border-radius: 20px;
-				}
+        .data-block h3 {
+            color: var(--neon-blue);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
 
-				#Q1 {
-					position: relative;
-					font-family: Impact, Charcoal, sans-serif;
-					font-size: 60px;
-					font-weight: 800;
-					letter-spacing: 2px;
-					margin-left: 10px;
-				}
-					
-				 #p1 {
-                    position: relative;
-					margin-left: 10px;
-					margin-right: 10px;
-                }
+        .data-block p, .data-block ul {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+        
+        .skill-tag {
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--neon-blue);
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+        
+        /* --- 3. LOCATION & IMAGE MODULE --- */
+        .location-module {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            max-width: 1200px;
+        }
 
-				#img1 {
-					position: absolute;
-					top: 140px;
-					left: 110%;
-					border-radius: 20px;
-					height: 460px;
-					width: auto;
-				}
-				#img2 {
-					position: absolute;
-					top: 380px;
-					right: 0%;
-					width: 200px;
-					height: auto;
-				}
+        .location-info h2 {
+            font-family: var(--text-art);
+            font-size: 4rem;
+            color: var(--neon-blue);
+        }
 
-				#img3 {
-					position: absolute;
-					top: 320px;
-					left: -100px;
-					width: 820px;
-					height: auto;
-				}
-				
-				#txt1 {
-					position: absolute;
-					top: 520px;
-					right: 0%;
-					font-family: "Chalkduster", fantasy;
-				}
+        .location-map {
+            position: relative;
+            height: 400px;
+            background: url('https://storage.googleapis.com/creatorspace-public/users%2Fcle685ei80158oc0y35xsxb5s%2FiC8oQjkRnV71cmuV-drone_vieux_port-4.jpg') center center/cover;
+            border: 2px solid var(--neon-pink);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
+            filter: saturate(150%) brightness(80%);
+            transition: 0.5s;
+        }
 
-				.msg {
-                    will-change: width, opacity, height;
-                    position: fixed;
-                    display: flex;
-                    background: rgba(255, 255, 255, 0.3);
-   				 	backdrop-filter: blur(10px);
-    				border-radius: 16px;
-    				border: 1px solid rgba(255, 255, 255, 0.2); 
-                    width: 230px;
-                    height: 120px;
-                    top: 14px;
-					left: -990px;
-                    border-radius: 20px ;
-                    transition: all 0.5s ease;
-                    justify-content: center;
-                    align-items: center;
-					color: black;
-					opacity: 1;
-					z-index: 9999;
-				}
+        .location-map:hover {
+            filter: saturate(100%) brightness(100%);
+            transform: scale(1.05);
+        }
 
-				.msg2 {
-					will-change: width, opacity, height;
-                    position: fixed;
-                    display: flex;
-                    background: rgba(255, 255, 255, 0.3);
-   				 	backdrop-filter: blur(6px);
-    				border: 1px solid rgba(255, 255, 255, 0.2); 
-                    width: 290px;
-                    height: 90px;
-                    top: 14px;
-					left: 10px;
-                    border-radius: 20px;
-                    transition: all 0.7s ease;
-                    justify-content: center;
-                    align-items: center;
-					opacity: 1;
-					color: black;
-					padding: 6px;
-					z-index: 9999;
-					box-shadow: 
-        			0 0 3px rgba(0, 0, 0, 0.4),
-        			0 0 5px rgba(0, 0, 0, 0.3),
-        			0 0 7px rgba(0, 0, 0, 0.2);
-				}
+        /* --- 4. COUPON COMMAND LINE --- */
+        .command-input-area {
+            width: 90%;
+            max-width: 700px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
 
-				.QA2 {
-					position: absolute;
-					top: 1000px;
-					left: 20px;
-					background-color: rgba(255, 243, 222, 0.8);
-					border-radius: 20px;
-				}
+        .command-input-area p {
+            color: #666;
+            margin-bottom: 10px;
+        }
 
-				#Q2 {
-					position: relative;
-					font-family: Impact, Charcoal, sans-serif;
-					font-size: 60px;
-					font-weight: 800;
-					letter-spacing: 2px;
-					margin-left: 10px;
-				}
-					
-				 #p2 {
-                    position: relative;
-					margin-left: 10px;
-					margin-right: 10px;
-                }
+        .command-line {
+            display: flex;
+            align-items: center;
+            background: var(--bg-dark);
+            border: 1px solid #333;
+            padding: 10px;
+        }
+        
+        .command-prompt {
+            color: var(--neon-pink);
+            margin-right: 10px;
+            font-size: 1rem;
+        }
 
-				#img4 {
-					position: absolute;
-					top: 380px;
-					width: 900px;
-					height: auto;
-					transform: translateX(55%);
-					border-radius: 20px;
-				}
+        #coupon-1 {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            caret-color: var(--neon-blue);
+            letter-spacing: 2px;
+        }
 
-				#txt2 {
-					position: absolute;
-					top: 220px;
-                    left: 830px;
-					font-size: 65px;
-					font-family: Verdana, Geneva, sans-serif;
-				}
+        #boutton {
+            background: var(--neon-blue);
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-				.endnav {
-					position: absolute;
-					display: flex;
-					flex-direction: row;
-					top: 2300px;
-					left: 0px;
-                    height: 300px;
-					right: 0px;
-					buttom: 0px;
-					background-color: rgb(242,242,245);
-				}
+        #boutton:hover { background: var(--neon-pink); }
+        
+        /* --- 极简命令导航栏 (右下角) --- */
+        .command-nav-bar {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 5000;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--neon-blue);
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: flex;
+            gap: 15px;
+        }
 
-				.endnav1 {
-					display: flex;
-					flex-direction: column;
-					font-family: "American Typewriter Light", "American Typewriter", serif;
-					font-size: 20px;
-					margin: 0px 12px;
-				}
+        .nav-link-btn {
+            color: var(--neon-blue);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-				.endnav1 {
-					color: rgb(23,23,23);
-				}
-				
-				.SM1 {
-					text-decoration: none;
-					color: rgb(64,64,65);
-					margin: 5px 0;
-					cursor: pointer;
-				}
+        .nav-link-btn:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
 
-				.SM2 {
-					text-decoration: none;
-					color: rgb(173,173,175);
-					margin: 5px 0;
-					cursor: not-allowed;
-				}
+        /* --- 浮窗 (Modal) & Toast --- */
+        .modal-overlay {
+            position: fixed;
+            bottom: 80px; /* 避免和命令栏重叠 */
+            right: 30px;
+            z-index: 4000;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--neon-pink);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            transform: scale(0.5) translateY(100%);
+            opacity: 0;
+            transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* 弹性动画 */
+        }
+        
+        .modal-overlay.show-modal { transform: scale(1) translateY(0); opacity: 1; }
+        
+        .modal-links { margin-top: 15px; }
+        .modal-links a {
+            display: block;
+            margin: 5px 0;
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 5px; right: 10px;
+            background: none; border: none;
+            color: var(--neon-pink); cursor: pointer; font-size: 1.5rem;
+        }
 
-				.SM2:active{
-					color: rgb(173,173,175);
-				}
+        .msg-toast {
+            position: fixed;
+            top: 30px; left: 50%; transform: translateX(-50%) translateY(-100px);
+            background: var(--neon-blue); color: black;
+            padding: 10px 20px; border-radius: 30px;
+            font-weight: bold; z-index: 6000;
+            box-shadow: 0 0 10px var(--neon-blue);
+            transition: 0.5s;
+        }
+        .msg-toast.active { transform: translateX(-50%) translateY(0); }
+        
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 25vw; }
+            .location-module { grid-template-columns: 1fr; }
+            .location-map { height: 250px; }
+            .location-info h2 { font-size: 2.5rem; }
+            .command-nav-bar { bottom: 10px; right: 10px; padding: 8px 10px; }
+            .modal-overlay { right: 10px; bottom: 60px; max-width: 90%; }
+        }
+    </style>
+</head>
+<body>
 
-				.endnav2 {
-					display: flex;
-					flex-direction: column;
-					font-family: "American Typewriter Light", "American Typewriter", serif;
-					font-size: 20px;
-				}
-				
-        </style> 
-    </head>
-    <!-- BODY PART (NAVBAR)-->
-    <body>
-        <!-- STILL SOME ISSUES NOT SOLVED YET-->
-        <nav class="navbar">
-            <div class="Island grow">
-                <p class="text hidden"></p>
-                <a class="logo" href="/"><img src="https://i.ibb.co/KjZ0wgkV/Ashley-light.png" width="30px" height="auto"></a>
-                <div class='hamburger'>☰</div>
-            </div>
-            <div class="navbar2">
-                <div class="Island2">
-                    <div class="sections sechid">
-                        <a class= "txt" href="/AboutUs">About Us</a>
-                        <a class= "txt" href="/Moreinfo">More info</a>
-                        <a class= "txt" href="/Contact">Contact</a>
-                        <a class= "txt" href="/UpdateLog">Update Log</a>
-                    </div>
-                </div>           
-            </div>
-        </nav>
+    <div class="msg-toast"></div>
 
-		<div class="msg"></div>
-		
-        <div class="intro">
-            <img class="img2" src="HELLOAPPLE.png">
-            <h1 class="titleA1">Zhanyi Zhou</h1>
-            <h2 class="cotitA1">Personal website</h2>
+    <div id="gameModal" class="modal-overlay">
+        <button class="modal-close" id="closeModalButton">&times;</button>
+        <h3 style="color: var(--neon-pink);">[WEB.3D.GAMES]</h3>
+        <p style="font-size: 0.8rem; color: #666;">// ASLFS Simulation Protocol Active</p>
+        <div class="modal-links">
+            <a href="https://ashley-developper.github.io/ASLFS" target="_blank">[ASLFS] FLight simulator</a>
+            <a href="https://ashley-developper.github.io/ASLFS/CS1" target="_blank">[ASLFS/CS1] Car simulator</a>
         </div>
+    </div>
 
-		<div class="QA1">
-			<h1 id="Q1"><strong>Hey! Nice to see you!👀</strong></h1>
-			<p id="p1">Hi! I’m Zhanyi Zhou, a 13‑year‑old student in Québec, Canada. This website is my space to share what I’m learning and creating. Thanks for visiting!</p>
-			<img id="img1" src="https://thelinknewspaper.ca/images/made/images/articles/_resized/school_900_676_90.jpg" alt="Picture of my school">
-			<img id="img2" src="https://cdn-icons-png.freepik.com/512/2351/2351966.png" alt="arrow icon">
-			<img id="img3" src="https://i.ibb.co/7Hr4Q3S/Drawing-2.png" alt="Drawing">
-			<h2 id="txt1">My school</h2>
-		</div>
+    <div class="command-nav-bar">
+        <span class="nav-link-btn" onclick="showMsg('Accessing About Us...')">ABOUT</span>
+        <span class="nav-link-btn" onclick="showMsg('Accessing Documentation...')">DOCS</span>
+        <span class="nav-link-btn" onclick="showMsg('Initiating Contact Protocol...')">CONTACT</span>
+        <span class="nav-link-btn" id="toggleModalBtn">[GAMES]</span>
+    </div>
 
-		<div class="QA2">
-			<h1 id="Q2"><strong>What are Your strengths?🧠</strong></h1>
-			<p id="p2">I speak three languages (French, English and chinese), I can play piano and a bit guitare, I knwo how to program (HTML, CSS, JS and Python). Skating and skateboards are interesting stuffs for me, and, YEP</p>
-			<img id="img4" src="https://storage.googleapis.com/creatorspace-public/users%2Fcle685ei80158oc0y35xsxb5s%2FiC8oQjkRnV71cmuV-drone_vieux_port-4.jpg" alt="City I live">
-			<p id="txt2">Montreal</p>
-		</div>
+    <div class="snap-container">
 
-		<div class="endnav">
-			<div class="endnav1">
-				<h2 class="endnav1">Social media </h2>
-				<a href="http://bilibili.com" class="SM1">Bilibili</a>
-				<a class="SM2">Youtube</a>
-				<a class="SM2">Facebook</a>
-				<a class="SM2">Intagram</a>
-			</div>
+        <section class="in-view">
+            <div class="hero-title-container">
+                <h1 class="hero-title module">ZHANYI</h1>
+                <h1 class="hero-title module module-delay-1">ZHOU</h1>
+            </div>
+            <p class="hero-subtitle module module-delay-2">SYSTEM ACTIVATED</p>
+        </section>
 
-			<div class="endnav2">
-				<h2 class="endnav1">Pages</h2>
-				<a href="/AboutUs" class = "SM1">About Me</a>
-				<a href="/MoreInfo" class = "SM1">More information</a>
-				<a href="/Contact" class = "SM1">Contact me</a>
-				<a href="/UpdateLog" class = "SM1">Update Log</a>
-			</div>
-			
-		</div>
+        <section>
+            <div class="data-stream module">
+                <h2>// DATA STREAM: PROFILE_V06</h2>
 
-	
-		<!--All code was properly made by Zhanyi Zhou :)-->
-        <script defer>
-            //Javascript for the navbar island
-            //Started June 16 17:48:07
-            const Island = document.querySelector('.Island')
-            const Islandgrow = document.querySelector('.Island.grow')
-            const text = document.querySelector('.text')
-            const hidden = document.querySelector('.hidden')
-            const hamburger = document.querySelector('.hamburger')
-            const Island2 = document.querySelector('.Island2')
-            const Islandgrow2 = document.querySelector('.Island2.grow2')
-            const sections = document.querySelector('.sections')
-			const msg = document.querySelector ('.msg')
-			const SM2 = document.querySelectorAll ('.SM2')
+                <div class="data-block module module-delay-1">
+                    <h3>[01] INITIATION</h3>
+                    <p>STATUS: ONLINE</p>
+                    <p>// Hi! I am a 13-year-old student based in Québec, Canada. This platform serves as a public repository for ongoing projects and learning modules.</p>
+                </div>
 
-            Island.classList.remove ('grow');
-            Island.addEventListener('click',function() {
-                text.innerText='Main Page';
-                Island.classList.toggle ('grow');
-                if (Island.classList.contains('grow')){
-                    text.classList.remove ('hidden');
-                } else {
-                    text.classList.add ('hidden');
-                }
-            })
+                <div class="data-block module module-delay-2">
+                    <h3>[02] SKILLS_MATRIX</h3>
+                    <p>LANGUAGES: French, English, Chinese</p>
+                    <p>CODING: Python, HTML/CSS/JS</p>
+                    <p>OTHERS: Music (Piano/Guitar), Skateboarding</p>
+                    <div style="margin-top: 10px;">
+                        <span class="skill-tag">DEV:JS</span>
+                        <span class="skill-tag">PY:AI/ML</span>
+                        <span class="skill-tag">MUSIC:MIDI</span>
+                        <span class="skill-tag">MULTILINGUAL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            hamburger.addEventListener('click',function() {
-                console.log('hamburger clicked');
-                Island2.classList.toggle ('grow2');
-                sections.classList.toggle ('sechid');
-                Island.classList.add('grow');
+        <section>
+            <div class="location-module">
+                <div class="location-info module">
+                    <h2>LOCATION_LOCK</h2>
+                    <p style="color: var(--neon-pink); margin: 10px 0;">[MONTREAL, QC, CA]</p>
+                    <p style="margin-top: 20px;">// Geographical anchor point confirmed. Currently operating from Brossard sector. Displaying local visualization for context.</p>
+                </div>
+                <div class="location-map module module-delay-1"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="command-input-area module">
+                <p>// COUPON: INPUT AUTHENTICATION KEY</p>
+                <div class="command-line">
+                    <span class="command-prompt">AOS-CLI ></span>
+                    <input id="coupon-1" type="text" placeholder="AUTH KEY (MAX 11 CHARS)" maxlength="11">
+                    <button id="boutton">EXECUTE</button>
+                </div>
+                <p style="color: var(--neon-blue); margin-top: 15px; text-align: right;">CMD: EXECUTE [AUTH KEY] ...</p>
+            </div>
+            
+            <footer style="position: absolute; bottom: 20px; font-size: 0.7rem; color: #333;">
+                [STATUS: SYSTEM STABLE] © 2025 Zhanyi Zhou. AOS 6 Abstract//Glitch Protocol.
+            </footer>
+        </section>
+
+    </div>
+
+    <script type="module">
+        // --- FIREBASE (UNCHANGED) ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAhd2QZhg_k0J5-A7BKgiM6oc5N2PwYz64",
+            authDomain: "ashley-6f99c.firebaseapp.com",
+            databaseURL: "https://ashley-6f99c-default-rtdb.firebaseio.com",
+            projectId: "ashley-6f99c",
+            storageBucket: "ashley-6f99c.firebasestorage.app",
+            messagingSenderId: "210818892386",
+            appId: "1:210818892386:web:3e631daf31baf1e91c873b",
+            measurementId: "G-447RJGVDV6"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const dbRef = ref(db);
+        let couponvalue;
+
+        get(child(dbRef, "coupon")).then((snapshot) => {
+            if (snapshot.exists()) couponvalue = snapshot.val().trim();
+        });
+
+        // --- UI LOGIC ---
+        const msgToast = document.querySelector('.msg-toast');
+        window.showMsg = (text) => { // 暴露给全局的函数
+            msgToast.innerText = text;
+            msgToast.classList.add('active');
+            setTimeout(() => msgToast.classList.remove('active'), 4000);
+        }
+
+        // Coupon Logic
+        const btn = document.getElementById('boutton');
+        if(btn){
+            btn.addEventListener('click', () => {
+                const val = document.getElementById('coupon-1').value.trim();
+                if(val === couponvalue) showMsg('[ACCESS GRANTED] 老妈你知道吗只有你能看到这个消息因为你输入了正确的coupon哈哈回邮件');
+                else showMsg('[ACCESS DENIED] Invalid Key. Termination Protocol Initiated...');
             });
+        }
 
-			window.addEventListener("load", function() {
-    			msg.classList.add('msg2')
-				msg.innerText='Hey, Welcome to my website! Enjoy your time ~'
-				setTimeout(() => {
-    				msg.classList.remove("msg2");
-				}, 5000);
-			});
+        // Welcome & Modal Toggle
+        const gameModal = document.getElementById('gameModal');
+        window.addEventListener('load', () => {
+            setTimeout(() => showMsg('[SYSTEM] Core Module Initialized.'), 1000);
+            setTimeout(() => gameModal.classList.add('show-modal'), 1500);
+        });
+        
+        document.getElementById('toggleModalBtn').addEventListener('click', () => {
+            gameModal.classList.toggle('show-modal');
+        });
+        
+        document.getElementById('closeModalButton').addEventListener('click', () => {
+            gameModal.classList.remove('show-modal');
+        });
+    </script>
 
-			SM2.forEach (SM2GR =>{
-					SM2GR.addEventListener("click", function() {
-					msg.classList.add('msg2')
-					msg.innerText='Sorry, we don’t have YouTube, Facebook, or Instagram accounts. lol'
-					setTimeout(() => {
-    					msg.classList.remove("msg2");
-					}, 5000);
-				}
-			)});
+    <script defer>
+        // --- 核心：滚动监听与动画触发 ---
+        const snapContainer = document.querySelector('.snap-container');
+        const sections = document.querySelectorAll('section');
+        
+        const observerOptions = {
+            root: snapContainer,
+            threshold: 0.5 // 当50%可见时触发
+        };
 
-        </script>
-    </body>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // 确保只有在滚动容器中时才更新 in-view 状态
+                if (entry.isIntersecting) {
+                    sections.forEach(s => s.classList.remove('in-view'));
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // 首次加载时确保第一屏有动画
+        sections[0].classList.add('in-view');
+    </script>
+</body>
 </html>
