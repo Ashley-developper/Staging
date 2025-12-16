@@ -1,21 +1,755 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="Ashley studio, interested in everthing in the world. We also help people building personal website, like this.">
-        <meta name="keywords" content="Ashley, Interest, Personal website, Ashley Studio">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Zhanyi Zhou Ashley">
-        <title> Ashley</title>
-        <link rel="icon" href="https://i.ibb.co/DPCmRdtg/Ashley-light.png">
-        <style>
-        </style>
-    </head>
-    <body>
-        <h1 id='h1'>This is a testing website and it's owned by Zhanyi Zhou</h1>
-            <iframe src="https://www.geo-fs.com/" width="200 " height="7900" frameborder="0"></iframe>
-    </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
-</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Zhanyi Zhou, Personal Website - AOS 5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Zhanyi Zhou">
+    <title>AOS 5 - Zhanyi Zhou</title>
+    <link rel="icon" href="https://i.ibb.co/DPCmRdtg/Ashley-light.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-color: #007AFF;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --island-bg: rgba(0, 0, 0, 0.8);
+            --font-main: 'Inter', sans-serif;
+            --font-code: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- 动画关键帧 --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- 动态 Island 导航栏 (重构版) --- */
+        .navbar-container {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            pointer-events: none; /* 让点击穿透空白区域 */
+        }
+
+        .island {
+            pointer-events: auto;
+            background: var(--island-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 40px;
+            height: 50px;
+            width: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .island.expanded {
+            width: 320px;
+        }
+
+        .island.menu-open {
+            width: 300px;
+            height: 250px;
+            border-radius: 30px;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 20px;
+        }
+
+        .island-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            margin-bottom: 0; /* 默认无边距 */
+        }
+        
+        .island.menu-open .island-header {
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 10px;
+        }
+
+        .logo img {
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        .island-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 500;
+            font-size: 14px;
+            opacity: 0;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .island.expanded .island-title {
+            opacity: 1;
+        }
+
+        .hamburger {
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            transform: translateY(10px);
+        }
+
+        .island.menu-open .nav-links {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .nav-links a {
+            padding: 12px;
+            border-radius: 12px;
+            color: var(--text-muted);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        /* --- 提示弹窗 (Toast) --- */
+        .toast-msg {
+            position: fixed;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+            padding: 12px 24px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .toast-msg.active {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* --- 主要内容区域 --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            background: rgba(255,165,0, 0.1);
+            color: orange;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,165,0, 0.3);
+            animation: fadeIn 1s ease 0.2s backwards;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            animation: fadeIn 1s ease 0.4s backwards;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: cornflowerblue;
+            font-weight: 500;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease 0.6s backwards;
+        }
+
+        .hero-img {
+            width: 80px;
+            height: auto;
+            animation: float 6s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            font-size: 12px;
+            color: var(--text-muted);
+            animation: fadeIn 1s ease 1s backwards;
+        }
+
+        /* BENTO GRID LAYOUT (Modern Portal) */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(250px, auto);
+            gap: 20px;
+            margin-bottom: 100px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 30px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: white;
+            font-family: 'Anton', sans-serif; /* Fallback to standard if not loaded */
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            color: #ccc;
+            font-size: 16px;
+            line-height: 1.5;
+            z-index: 2;
+        }
+
+        /* Intro Card */
+        .card-intro {
+            grid-column: span 12;
+            background: linear-gradient(to right, rgba(20,20,20,0.8), rgba(40,40,40,0.8));
+        }
+        
+        @media(min-width: 768px) {
+            .card-intro { grid-column: span 7; }
+        }
+
+        /* School Card */
+        .card-school {
+            grid-column: span 12;
+            background-image: url('https://thelinknewspaper.ca/images/made/images/articles/_resized/school_900_676_90.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-school::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, black, transparent);
+        }
+
+        .card-school-content {
+            position: relative;
+            z-index: 2;
+            margin-top: auto;
+        }
+        
+        @media(min-width: 768px) {
+            .card-school { grid-column: span 5; }
+        }
+
+        /* Skills Card */
+        .card-skills {
+            grid-column: span 12;
+        }
+        
+        @media(min-width: 768px) {
+            .card-skills { grid-column: span 4; }
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Drawing Card */
+        .card-art {
+            grid-column: span 12;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+        }
+        
+        @media(min-width: 768px) {
+            .card-art { grid-column: span 4; }
+        }
+
+        .card-art img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px;
+        }
+
+        /* Location Card */
+        .card-location {
+            grid-column: span 12;
+            background-image: url('https://storage.googleapis.com/creatorspace-public/users%2Fcle685ei80158oc0y35xsxb5s%2FiC8oQjkRnV71cmuV-drone_vieux_port-4.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 300px;
+        }
+        
+        @media(min-width: 768px) {
+            .card-location { grid-column: span 4; }
+        }
+
+        .card-location::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+        .card-location:hover::after { background: rgba(0,0,0,0.2); }
+
+        .location-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: white;
+            color: black;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            z-index: 5;
+        }
+
+        /* COUPON SECTION (Redesigned) */
+        .coupon-section {
+            background: linear-gradient(135deg, #baf1e3 0%, #ffdede 100%);
+            border-radius: 30px;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 100px;
+            color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coupon-content h2 {
+            font-family: 'Bradley Hand', cursive; /* Original font preserved */
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .coupon-content h3 {
+            font-family: 'Bradley Hand', cursive;
+            margin-bottom: 40px;
+        }
+
+        .coupon-form {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        #coupon-1 {
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255,255,255,0.8);
+            font-size: 24px;
+            letter-spacing: 5px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            outline: none;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        #boutton {
+            padding: 15px 40px;
+            border-radius: 50px;
+            border: none;
+            background: rgb(25, 72, 70);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #boutton:active { transform: scale(0.95); }
+
+        /* FOOTER */
+        .site-footer {
+            background: #111;
+            padding: 60px 20px 20px;
+            border-top: 1px solid #222;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #888;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .footer-col a:hover { color: white; padding-left: 5px; }
+
+        .footer-col a.disabled {
+            cursor: not-allowed;
+            color: #444;
+        }
+
+        .copyright {
+            text-align: center;
+            color: #444;
+            font-size: 14px;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
+
+        /* Utility for animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="toast-msg"></div>
+
+    <nav class="navbar-container">
+        <div class="island" id="island-nav">
+            <div class="island-header">
+                <a class="logo" href="/"><img src="https://i.ibb.co/KjZ0wgkV/Ashley-light.png" alt="Logo"></a>
+                <span class="island-title">Main Page</span>
+                <div class="hamburger">☰</div>
+            </div>
+            <div class="nav-links">
+                <a href="/AboutUs">About Us <span>→</span></a>
+                <a href="/Moreinfo">More Info <span>→</span></a>
+                <a href="/Contact">Contact <span>→</span></a>
+                <a href="/UpdateLog">Update Log <span>→</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <section class="hero">
+            <div class="hero-badge">AOS 5 Developer Beta</div>
+            <img class="hero-img" src="HELLOAPPLE.png" alt="Icon"> <h1>Zhanyi Zhou</h1>
+            <h2>Personal Website</h2>
+            <div class="scroll-indicator">Scroll to Explore</div>
+        </section>
+
+        <section class="bento-grid">
+            
+            <div class="card card-intro reveal">
+                <h3>Hey! Nice to see you! 👀</h3>
+                <p>Hi! I’m Zhanyi Zhou, a 13-year-old student in Québec, Canada. This website is my space to share what I’m learning and creating. Thanks for visiting!</p>
+            </div>
+
+            <div class="card card-school reveal">
+                <div class="card-school-content">
+                    <h3>My School</h3>
+                    <p>The place where I learn and grow.</p>
+                </div>
+            </div>
+
+            <div class="card card-art reveal">
+                <img src="https://i.ibb.co/7Hr4Q3S/Drawing-2.png" alt="My Drawing">
+            </div>
+
+            <div class="card card-skills reveal">
+                <h3>Strengths 🧠</h3>
+                <p>I speak three languages (French, English, Chinese).</p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">HTML/CSS/JS</span>
+                    <span class="tag">Piano</span>
+                    <span class="tag">Guitar</span>
+                    <span class="tag">Skateboard</span>
+                    <span class="tag">Good Student XD</span>
+                </div>
+            </div>
+
+            <div class="card card-location reveal">
+                <span class="location-badge">Live in Montreal</span>
+                <div style="position: absolute; bottom: 30px; left: 30px; z-index: 2;">
+                    <h3>Montreal 🏠</h3>
+                    <p style="font-size: 14px; max-width: 90%;">Currently at Brossard. Montreal is a cool place FR.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="coupon-section reveal">
+            <div class="coupon-content">
+                <h2>Did you receive an email concerning the coupon?</h2>
+                <h3>Enter your code here! :D</h3>
+                <div class="coupon-form">
+                    <input id="coupon-1" type="text" name="username" placeholder="CODE" maxlength="11">
+                    <input id="boutton" type="button" value="Submit">
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Social Media</h4>
+                <a href="http://bilibili.com" target="_blank">Bilibili</a>
+                <a class="disabled sm2-trigger">Youtube</a>
+                <a class="disabled sm2-trigger">Facebook</a>
+                <a class="disabled sm2-trigger">Instagram</a>
+            </div>
+            <div class="footer-col">
+                <h4>Pages</h4>
+                <a href="/AboutUs">About Me</a>
+                <a href="/MoreInfo">More Information</a>
+                <a href="/Contact">Contact Me</a>
+                <a href="/UpdateLog">Update Log</a>
+            </div>
+        </div>
+        <p class="copyright">© 2025 Zhanyi Zhou. All Rights Reserved. Hey yo, You loved my website? 🤘 AOS 5 Dev Build.</p>
+    </footer>
+
+    <script type="module">
+        // --- FIREBASE LOGIC (Unchanged Config) ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAhd2QZhg_k0J5-A7BKgiM6oc5N2PwYz64",
+            authDomain: "ashley-6f99c.firebaseapp.com",
+            databaseURL: "https://ashley-6f99c-default-rtdb.firebaseio.com",
+            projectId: "ashley-6f99c",
+            storageBucket: "ashley-6f99c.firebasestorage.app",
+            messagingSenderId: "210818892386",
+            appId: "1:210818892386:web:3e631daf31baf1e91c873b",
+            measurementId: "G-447RJGVDV6"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase(app);
+        const dbRef = ref(db);
+        let couponvalue;
+
+        // Fetch Coupon
+        get(child(dbRef, "coupon")).then((snapshot) => {
+            if (snapshot.exists()) {
+                couponvalue = snapshot.val().trim();
+                console.log("Data found successfully");
+            } else {
+                console.log("404 No data found");
+            }
+        }).catch((error) => {
+            console.error("Database Error:", error);
+        });
+
+        // --- UI NOTIFICATION LOGIC (Modernized) ---
+        const msgBox = document.querySelector('.toast-msg');
+        
+        function showToast(message) {
+            msgBox.innerText = message;
+            msgBox.classList.add('active');
+            setTimeout(() => {
+                msgBox.classList.remove('active');
+            }, 5000);
+        }
+
+        // Welcome Message
+        window.addEventListener("load", () => {
+            setTimeout(() => showToast('Hey, Welcome to AOS 5! Enjoy your time ~'), 500);
+        });
+
+        // Social Media Disabled Links
+        document.querySelectorAll('.sm2-trigger').forEach(btn => {
+            btn.addEventListener('click', () => {
+                showToast('Sorry, we don’t have YouTube, Facebook, or Instagram accounts. lol');
+            });
+        });
+
+        // Coupon Logic
+        const submitBtn = document.getElementById('boutton');
+        if(submitBtn) {
+            submitBtn.addEventListener("click", function() {
+                const input1 = document.querySelector('#coupon-1');
+                const value1 = input1.value.trim();
+                
+                if (value1 === couponvalue) {
+                    showToast('老妈你知道吗只有你能看到这个消息因为你输入了正确的coupon哈哈回邮件');
+                } else {
+                    showToast('Alert: You are not the right person.');
+                }
+            });
+        }
+    </script>
+
+    <script defer>
+        // --- NAVBAR ISLAND LOGIC (Refined for AOS 5) ---
+        const island = document.getElementById('island-nav');
+        const hamburger = document.querySelector('.hamburger');
+        const islandTitle = document.querySelector('.island-title');
+
+        // Toggle Expand (Island Effect)
+        island.addEventListener('click', (e) => {
+            // Only toggle if not clicking hamburger directly (handled separately) or links
+            if(e.target === hamburger || e.target.tagName === 'A') return;
+            
+            island.classList.toggle('expanded');
+            
+            // Logic for title text
+            if(island.classList.contains('expanded')) {
+                islandTitle.innerText = "Zhanyi's Portal";
+            } else {
+                setTimeout(() => { if(!island.classList.contains('expanded')) islandTitle.innerText = "Main Page"; }, 200);
+            }
+        });
+
+        // Hamburger Menu Logic
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent bubbling to island click
+            island.classList.toggle('menu-open');
+            island.classList.remove('expanded'); // Close horizontal expansion if open
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!island.contains(e.target)) {
+                island.classList.remove('menu-open');
+                island.classList.remove('expanded');
+            }
+        });
+
+        // --- SCROLL ANIMATIONS (Intersection Observer) ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
